@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
 
 const DataTable = () => {
-  // Data buku (contoh data statis)
   const [books, setBooks] = useState([
     { id: 1, judul: 'Judul Buku 1', penulis: 'Penulis 1', penerbit: 'Penerbit 1', harga: 50, stok: 20 },
     { id: 2, judul: 'Judul Buku 2', penulis: 'Penulis 2', penerbit: 'Penerbit 2', harga: 40, stok: 15 },
-    // Tambahkan data buku lainnya sesuai kebutuhan
   ]);
 
-  // Fungsi untuk menghapus buku
   const handleDelete = (id) => {
     setBooks(books.filter((book) => book.id !== id));
   };
