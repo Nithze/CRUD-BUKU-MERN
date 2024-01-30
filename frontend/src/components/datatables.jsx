@@ -1,7 +1,15 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import "../css/datatable.css";
+
+const formatRupiah = (price) => {
+	return new Intl.NumberFormat("id-ID", {
+		style: "currency",
+		currency: "IDR",
+	}).format(price);
+};
 
 const DataTable = () => {
 	const [books, setBooks] = useState([]);
@@ -20,7 +28,6 @@ const DataTable = () => {
 	}, []);
 
 	const handleDelete = async (_id) => {
-		// Show SweetAlert confirmation dialog
 		const result = await Swal.fire({
 			title: "Are you sure?",
 			text: "You won't be able to revert this!",
@@ -31,7 +38,6 @@ const DataTable = () => {
 			confirmButtonText: "Yes, delete it!",
 		});
 
-		// If the user confirms the deletion, proceed with the delete operation
 		if (result.isConfirmed) {
 			try {
 				await axios.delete(`http://localhost:7777/buku/delete/${_id}`);
@@ -50,12 +56,15 @@ const DataTable = () => {
 
 	return (
 		<div className="data-table">
-			<button
-				className="add-data-btn"
-				onClick={() => console.log("Tambah Data Buku")}
-			>
-				+
-			</button>
+			<Link to="/catalogue-buku/add">
+				<button
+					className="add-data-btn"
+					onClick={() => console.log("Tambah Data Buku")}
+				>
+					+
+				</button>
+			</Link>
+
 			<table className="table">
 				<thead className="table-header">
 					<tr>
@@ -73,7 +82,7 @@ const DataTable = () => {
 							<td className="table-data">{book.judul}</td>
 							<td className="table-data">{book.penulis}</td>
 							<td className="table-data">{book.penerbit}</td>
-							<td className="table-data">{book.harga}</td>
+							<td className="table-data">{formatRupiah(book.harga)}</td>
 							<td className="table-data">{book.stok}</td>
 							<td className="table-data table-actions">
 								<button onClick={() => console.log("Edit", book._id)}>
