@@ -1,4 +1,5 @@
 import Navbar from "./components/navbar";
+import DataTables from "./components/datatables";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
 function App() {
@@ -6,9 +7,10 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar />
+        <DataTables />
         <div className="pages">
           <Routes>
-            <Route path="/" element={<h1>hello World!</h1>}/>
+            <Route path="/" element={<h1>hello Data!</h1>}/>
           </Routes>
         </div>
       </BrowserRouter>
