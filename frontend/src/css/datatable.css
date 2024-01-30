@@ -1,0 +1,71 @@
+.data-table {
+	margin: auto;
+	margin-top: 20px;
+}
+
+.add-data-btn {
+	background: linear-gradient(to right, #4f0db9 0%, #963bec 100%);
+	color: #fff;
+	border: none;
+	padding: 10px 15px;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	border-radius: 4px;
+	transition: background 0.3s ease;
+}
+
+.add-data-btn:hover {
+	background: linear-gradient(to right, #963bec 0%, #4f0db9 100%);
+	color: #fff;
+}
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+.table-header {
+	background-color: rgb(230, 230, 230); /* Match your navbar background color */
+	color: #1f1f1f; /* Match your navbar text color */
+	font-weight: 400;
+}
+
+.table th,
+.table td {
+	padding: 15px;
+	text-align: center;
+	width: calc(100% / 6);
+}
+
+.table th {
+	background-color: rgb(230, 230, 230); /* Match your navbar background color */
+	color: #1f1f1f; /* Match your navbar text color */
+	text-align: center;
+}
+
+.table tr {
+	transition: background-color 0.3s ease;
+}
+
+.table tr:hover {
+	background-color: #f5f5f5;
+}
+
+.table-actions button {
+	background-color: #e44d26;
+	color: #fff;
+	border: none;
+	padding: 8px 12px;
+	font-size: 0.9rem;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+	margin-right: 5px;
+}
+
+.table-actions button:hover {
+	background-color: #d14020;
+}
