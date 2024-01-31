@@ -1,10 +1,22 @@
+button {
+    color: white;
+    transition: all 0.5s;
+    background-image: linear-gradient(to right, #4f0db9 0%, #9733EE 51%, #DA22FF 100%);
+    background-size: 200% auto;
+}
+button:hover{
+    background-color: #ffffff;
+    color: #ffffff;
+    background-position: right center;
+}
 .data-table {
 	margin: auto;
 	margin-top: 20px;
+    background-color: #fff;
 }
 
 .add-data-btn {
-	background: linear-gradient(to right, #4f0db9 0%, #963bec 100%);
+	/* background: linear-gradient(to right, #4f0db9 0%, #963bec 100%); */
 	color: #fff;
 	border: none;
 	padding: 10px 15px;
@@ -12,7 +24,12 @@
 	font-weight: 500;
 	cursor: pointer;
 	border-radius: 4px;
-	transition: background 0.3s ease;
+    margin: 5px;
+
+    color: white;
+    transition: all 0.5s;
+    background-image: linear-gradient(to right, #4f0db9 0%, #9733EE 51%, #DA22FF 100%);
+    background-size: 200% auto;
 }
 
 .add-data-btn:hover {
@@ -43,7 +60,8 @@
 
 .table th {
 	background-color: rgb(230, 230, 230); /* Match your navbar background color */
-	color: #1f1f1f; /* Match your navbar text color */
+    background-color: #4f0db9;
+	color: #ffffff; /* Match your navbar text color */
 	text-align: center;
 }
 
@@ -56,16 +74,17 @@
 }
 
 .table-actions button {
-	background-color: #e44d26;
+	/* background-color: #e44d26; */
+	/* background: linear-gradient(to right, #4f0db9 0%, #963bec 70%); */
 	color: #fff;
 	border: none;
 	padding: 8px 12px;
 	font-size: 0.9rem;
 	cursor: pointer;
-	transition: background-color 0.3s ease;
 	margin-right: 5px;
 }
 
 .table-actions button:hover {
-	background-color: #d14020;
+	font-size: 20px;
 }
+

@@ -61,7 +61,7 @@ const DataTable = () => {
 					className="add-data-btn"
 					onClick={() => console.log("Tambah Data Buku")}
 				>
-					+
+					+ 
 				</button>
 			</Link>
 

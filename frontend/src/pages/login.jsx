@@ -46,7 +46,7 @@ const LoginForm = ({ onLogin }) => {
 		<div className="login-container">
 			<form className="login-form" onSubmit={handleSubmit}>
 				<div>
-					<label htmlFor="username">Username:</label>
+					<label htmlFor="username">Username</label>
 					<input
 						type="text"
 						id="username"
@@ -56,7 +56,7 @@ const LoginForm = ({ onLogin }) => {
 					/>
 				</div>
 				<div>
-					<label htmlFor="password">Password:</label>
+					<label htmlFor="password">Passphrase</label>
 					<input
 						type="password"
 						id="password"
@@ -65,10 +65,10 @@ const LoginForm = ({ onLogin }) => {
 						onChange={handlePasswordChange}
 					/>
 				</div>
-				<a href="/signup">Ga punya akun? yuk Sign-Up</a>
 				<div>
 					<button type="submit">Login</button>
 				</div>
+				<a className="link" href="/signup">Ga punya akun? yuk Sign-Up</a>
 			</form>
 		</div>
 	);

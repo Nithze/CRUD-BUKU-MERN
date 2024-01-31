@@ -41,7 +41,8 @@ const Navbar = ({ onLogout }) => {
 						<Link to="#">Profil</Link>
 					</li>
 					<li>
-						<button onClick={handleLogout}>Log-Out</button>
+						{/* <button className="btn-logout" onClick={handleLogout}>Log-Out</button> */}
+                        <Link to="#" className="btn-logout" onClick={handleLogout}>Logout</Link>
 					</li>
 				</ul>
 				<div className="hamburger" onClick={handleToggleMenu}>
