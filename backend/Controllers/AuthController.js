@@ -2,6 +2,11 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../Models/userModel");
 
+//membuat JWT token
+const buatToken = (_id) => {
+	return jwt.sign({ _id }, process.env.SECRETE_KEY, { expiresIn: "3d" });
+};
+
 // login
 const loginUser = async (req, res) => {
 	const { username, password } = req.body;
@@ -13,13 +18,10 @@ const loginUser = async (req, res) => {
 			const passwordMatch = await bcrypt.compare(password, user.password);
 
 			if (passwordMatch) {
-				const token = jwt.sign({ username: user.username }, "your-secret-key", {
-					expiresIn: "1h",
-				});
+				const token = buatToken(user._id);
 
 				res.status(200).json({
 					username: user.username,
-					user,
 					token,
 					message: "berhasil login",
 				});
@@ -34,33 +36,17 @@ const loginUser = async (req, res) => {
 	}
 };
 
-const authenticateToken = (req, res, next) => {
-	const token = req.header("Authorization");
-
-	if (!token) {
-		return res.status(401).json({ message: "Unauthorized - Missing token" });
-	}
-
-	jwt.verify(token, "your-secret-key", (err, user) => {
-		if (err) {
-			return res.status(403).json({ message: "Forbidden - Invalid token" });
-		}
-
-		req.user = user;
-		next();
-	});
-};
-
 //signup
 const signupUser = async (req, res) => {
 	const { username, password, nama, ProfilePicture } = req.body;
 
 	try {
 		const user = await User.signup(username, password, nama, ProfilePicture);
-		res.status(200).json({ username, user, message: "berhasil sign-up" });
+		const token = buatToken(user._id);
+		res.status(200).json({ username, token, message: "berhasil sign-up" });
 	} catch (err) {
 		res.status(400).json({ message: err.message });
 	}
 };
 
-module.exports = { loginUser, signupUser, authenticateToken };
+module.exports = { loginUser, signupUser, buatToken };

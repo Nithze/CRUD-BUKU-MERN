@@ -10,27 +10,31 @@ import "./App.css";
 
 function App() {
 	const [authenticated, setAuthenticated] = useState(false);
+	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		// Check if the user is authenticated
-		const token = localStorage.getItem("token");
-		if (token) {
-			setAuthenticated(true);
-		} else {
-			setAuthenticated(false);
-		}
-	}, []);
+		const checkAuthentication = async () => {
+			const userToken = JSON.parse(localStorage.getItem("user"));
 
-	const logout = () => {
-		// Clear the token from localStorage on logout
-		localStorage.removeItem("token");
-		setAuthenticated(false);
-	};
+			if (userToken && userToken.token) {
+				setAuthenticated(true);
+			}
+
+			setLoading(false);
+		};
+
+		checkAuthentication();
+	}, []); // Empty dependency array to run the effect only once
+
+	// Show loading indicator or other UI while checking authentication
+	if (loading) {
+		return <div>Loading...</div>;
+	}
 
 	return (
 		<>
 			<BrowserRouter>
-				{authenticated && <Navbar onLogout={logout} />}
+				{authenticated && <Navbar />}
 				<div className="pages">
 					<Routes>
 						<Route

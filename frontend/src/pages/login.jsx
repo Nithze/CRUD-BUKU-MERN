@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useLogin } from "../hooks/useLogin";
 
-// eslint-disable-next-line react/prop-types
-const LoginForm = ({ onLogin }) => {
+const LoginForm = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+	const { login, error, isLoading } = useLogin();
 
 	const handleUsernameChange = (event) => {
 		setUsername(event.target.value);
@@ -15,30 +14,14 @@ const LoginForm = ({ onLogin }) => {
 		setPassword(event.target.value);
 	};
 
-	const navigate = useNavigate();
-
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		try {
-			const response = await axios.post("http://localhost:7777/auth/login", {
-				username: username,
-				password: password,
-			});
-
-			if (response.status === 200) {
-				console.log("Login successful");
-
-				if (onLogin) {
-					onLogin();
-				}
-
-				navigate("/");
-			} else {
-				console.error("Login failed");
-			}
+			await login(username, password);
+			window.location.href = "/";
 		} catch (error) {
-			console.error("Error during login:", error);
+			console.error(error);
 		}
 	};
 
@@ -66,9 +49,14 @@ const LoginForm = ({ onLogin }) => {
 					/>
 				</div>
 				<div>
-					<button type="submit">Login</button>
+					<button type="submit" disabled={isLoading}>
+						Login
+					</button>
+					{error && <div className="error">{error}</div>}
 				</div>
-				<a className="link" href="/signup">Ga punya akun? yuk Sign-Up</a>
+				<a className="link" href="/signup">
+					Ga punya akun? yuk Sign-Up
+				</a>
 			</form>
 		</div>
 	);

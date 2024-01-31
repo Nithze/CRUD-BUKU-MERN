@@ -1,21 +1,19 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../css/Navbar.css";
+import { useLogout } from "../hooks/useLogout";
 
-// eslint-disable-next-line react/prop-types
-const Navbar = ({ onLogout }) => {
+const Navbar = () => {
 	const [isMenuOpen, setMenuOpen] = useState(false);
+	const { logout } = useLogout();
 
 	const handleToggleMenu = () => {
 		setMenuOpen(!isMenuOpen);
 	};
 
 	const handleLogout = () => {
-		if (onLogout) {
-			onLogout().then(() => {
-				window.location.href = "/login";
-			});
-		}
+		logout();
+		window.location.href = "/login";
 	};
 
 	return (
@@ -41,8 +39,9 @@ const Navbar = ({ onLogout }) => {
 						<Link to="#">Profil</Link>
 					</li>
 					<li>
-						{/* <button className="btn-logout" onClick={handleLogout}>Log-Out</button> */}
-                        <Link to="#" className="btn-logout" onClick={handleLogout}>Logout</Link>
+						<button className="btn-logout" onClick={handleLogout}>
+							Log-Out
+						</button>
 					</li>
 				</ul>
 				<div className="hamburger" onClick={handleToggleMenu}>

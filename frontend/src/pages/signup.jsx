@@ -1,32 +1,24 @@
 import "../css/login.css";
 import { useState } from "react";
-import axios from "axios";
+import { useSignup } from "../hooks/useSignup";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [nama, setNama] = useState("");
+	const { signup, error, isLoading } = useSignup();
+	const navigate = useNavigate();
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		try {
-			const response = await axios.post("http://localhost:7777/auth/signup", {
-				username: username,
-				password: password,
-				nama: nama,
-			});
-
-			if (response.status === 200) {
-				window.location.href = "/login";
-				console.log("Signup successful");
-			} else {
-				// Handle error
-				console.error("Signup failed");
-			}
+			await signup(username, password, nama);
+			navigate("/");
+			window.location.reload();
 		} catch (error) {
-			// Handle error
-			console.error("Error during signup:", error);
+			console.error(error);
 		}
 	};
 
@@ -64,7 +56,10 @@ const SignupForm = () => {
 					/>
 				</div>
 				<div>
-					<button type="submit">Signup</button>
+					<button type="submit" disabled={isLoading}>
+						Signup
+					</button>
+					{error && <div className="error">{error}</div>}
 				</div>
 			</form>
 		</div>
