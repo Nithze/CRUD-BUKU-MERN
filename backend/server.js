@@ -7,6 +7,7 @@ const cors = require("cors");
 //routes
 const BukuRoutes = require("./Routes/BukuRoutes");
 const UserRoutes = require("./Routes/userRoutes");
+const AuthRoutes = require("./Routes/AuthRoutes");
 const app = express();
 app.use(cors());
 
@@ -29,5 +30,6 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 	});
 
 	app.use("/buku", BukuRoutes);
-    app.use("/user", UserRoutes);
+	app.use("/user", UserRoutes);
+	app.use("/auth", AuthRoutes);
 });

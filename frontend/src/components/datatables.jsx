@@ -29,20 +29,20 @@ const DataTable = () => {
 
 	const handleDelete = async (_id) => {
 		const result = await Swal.fire({
-			title: "Are you sure?",
-			text: "You won't be able to revert this!",
+			title: "Apa anda yakin?",
+			text: "Tindakan ini tidak bisa diualang.",
 			icon: "warning",
 			showCancelButton: true,
 			confirmButtonColor: "#3085d6",
 			cancelButtonColor: "#d33",
-			confirmButtonText: "Yes, delete it!",
+			confirmButtonText: "Yes",
 		});
 
 		if (result.isConfirmed) {
 			try {
 				await axios.delete(`http://localhost:7777/buku/delete/${_id}`);
 				setBooks(books.filter((book) => book._id !== _id));
-				Swal.fire("Deleted!", "The book has been deleted.", "success");
+				Swal.fire("Deleted!", "Buku telah dihapus dari muka bumi.", "success");
 			} catch (error) {
 				console.error("Error deleting data:", error);
 				Swal.fire(

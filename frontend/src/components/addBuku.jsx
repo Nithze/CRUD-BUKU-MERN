@@ -35,8 +35,8 @@ const Form = () => {
 				// Display SweetAlert2 success alert
 				Swal.fire({
 					icon: "success",
-					title: "Data Added Successfully!",
-					text: "The book has been added to the catalogue.",
+					title: "BERHASIL!",
+					text: "buku telah dimasukkan ke dalam katalog.",
 				}).then(() => {
 					window.location.href = "/catalogue-buku";
 				});
