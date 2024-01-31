@@ -1,11 +1,21 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "../css/Navbar.css";
 
-const Navbar = () => {
+// eslint-disable-next-line react/prop-types
+const Navbar = ({ onLogout }) => {
 	const [isMenuOpen, setMenuOpen] = useState(false);
 
 	const handleToggleMenu = () => {
 		setMenuOpen(!isMenuOpen);
+	};
+
+	const handleLogout = () => {
+		if (onLogout) {
+			onLogout().then(() => {
+				window.location.href = "/login";
+			});
+		}
 	};
 
 	return (
@@ -16,19 +26,22 @@ const Navbar = () => {
 				</div>
 				<ul className={isMenuOpen ? "nav-links active" : "nav-links"}>
 					<li>
-						<a href="/">Home</a>
+						<Link to="/">Home</Link>
 					</li>
 					<li>
-						<a href="/catalogue-buku">Buku</a>
+						<Link to="/catalogue-buku">Buku</Link>
 					</li>
 					<li>
-						<a href="#">Petugas</a>
+						<Link to="#">Petugas</Link>
 					</li>
 					<li>
-						<a href="#">Peminjaman</a>
+						<Link to="#">Peminjaman</Link>
 					</li>
 					<li>
-						<a href="#">Profil</a>
+						<Link to="#">Profil</Link>
+					</li>
+					<li>
+						<button onClick={handleLogout}>Log-Out</button>
 					</li>
 				</ul>
 				<div className="hamburger" onClick={handleToggleMenu}>
@@ -42,19 +55,19 @@ const Navbar = () => {
 				<div className="menubar">
 					<ul>
 						<li>
-							<a href="#">Home</a>
+							<Link to="/">Home</Link>
 						</li>
 						<li>
-							<a href="#">Buku</a>
+							<Link to="/catalogue-buku">Buku</Link>
 						</li>
 						<li>
-							<a href="#">Petugas</a>
+							<Link to="#">Petugas</Link>
 						</li>
 						<li>
-							<a href="#">Peminjaman</a>
+							<Link to="#">Peminjaman</Link>
 						</li>
 						<li>
-							<a href="#">Profil</a>
+							<Link to="#">Profil</Link>
 						</li>
 					</ul>
 				</div>

@@ -8,7 +8,7 @@ const {
 	tambahBuku,
 	updateBuku,
 	deleteBuku,
-} = require("../Controllers/bukuController");
+} = require("../Controllers/BukuController");
 
 router.get("/", getSemuaBuku);
 
