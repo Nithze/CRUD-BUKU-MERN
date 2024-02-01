@@ -93,7 +93,19 @@ const updateBuku = async (req, res) => {
 			return res.status(404).json({ message: "Buku tidak ditemukan" });
 		}
 
-		res.status(200).json({ message: "Buku berhasil di-update", buku });
+		// Update the book properties
+		buku.judul = req.body.judul || buku.judul;
+		buku.penulis = req.body.penulis || buku.penulis;
+		buku.penerbit = req.body.penerbit || buku.penerbit;
+		buku.harga = req.body.harga || buku.harga;
+		buku.stok = req.body.stok || buku.stok;
+
+		// Save the updated book
+		const updatedBuku = await buku.save();
+
+		res
+			.status(200)
+			.json({ message: "Buku berhasil di-update", buku: updatedBuku });
 	} catch (err) {
 		res.status(400).json({ message: err.message });
 	}

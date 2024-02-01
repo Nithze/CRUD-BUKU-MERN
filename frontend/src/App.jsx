@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Navbar from "./components/navbar";
 import DataTables from "./components/datatables";
 import BukuAddForm from "./components/addBuku";
+import BukuEditForm from "./components/editBuku";
 import Dashboard from "./pages/dashboard";
 import LoginForm from "./pages/login";
 import SignupForm from "./pages/signup";
@@ -54,10 +55,25 @@ function App() {
 							}
 						/>
 						<Route
-							path="/login"
-							element={<LoginForm onLogin={() => setAuthenticated(true)} />}
+							path="/catalogue-buku/edit/:id"
+							element={
+								authenticated ? <BukuEditForm /> : <Navigate to="/login" />
+							}
 						/>
-						<Route path="/signup" element={<SignupForm />} />
+						<Route
+							path="/login"
+							element={
+								!authenticated ? (
+									<LoginForm onLogin={() => setAuthenticated(true)} />
+								) : (
+									<Navigate to="/" />
+								)
+							}
+						/>
+						<Route
+							path="/signup"
+							element={!authenticated ? <SignupForm /> : <Navigate to="/" />}
+						/>
 					</Routes>
 				</div>
 			</BrowserRouter>

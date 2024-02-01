@@ -61,7 +61,7 @@ const DataTable = () => {
 					className="add-data-btn"
 					onClick={() => console.log("Tambah Data Buku")}
 				>
-					+ 
+					+
 				</button>
 			</Link>
 
@@ -85,9 +85,9 @@ const DataTable = () => {
 							<td className="table-data">{formatRupiah(book.harga)}</td>
 							<td className="table-data">{book.stok}</td>
 							<td className="table-data table-actions">
-								<button onClick={() => console.log("Edit", book._id)}>
-									Edit
-								</button>
+								<Link to={`/catalogue-buku/edit/${book._id}`}>
+									<button>Edit</button>
+								</Link>
 								<button onClick={() => handleDelete(book._id)}>Delete</button>
 							</td>
 						</tr>
